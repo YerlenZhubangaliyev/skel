@@ -1,0 +1,7 @@
+root {
+    application {
+        name { "APP NAME" }
+        version { "0.0.1" }
+        copyright { "&copy; {currentYear, date, y}. APP NAME" }
+    }
+}

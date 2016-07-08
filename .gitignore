@@ -1,0 +1,11 @@
+.idea
+node_modules
+vendor/
+public_html/static/*
+!public_html/static/.gitkeep
+npm-debug.log
+_sprite.scss
+favicons.volt
+data/locale/*.dat
+data/locale/*/*/res/*.res
+data/locale/*/*/res/package.txt

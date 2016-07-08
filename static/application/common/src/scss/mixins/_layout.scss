@@ -1,0 +1,21 @@
+/**
+ * Чистый прилепленный футер
+ */
+@mixin clean-sticky-footer ($footer-height: 100px, $footer-selector: unquote('footer')) {
+  html {
+    position: relative;
+    min-height: 100%;
+  }
+
+  body {
+    margin: 0 0 $footer-height 0 !important;
+  }
+
+  #{$footer-selector} {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: $footer-height !important;
+    width: 100%;
+  }
+}

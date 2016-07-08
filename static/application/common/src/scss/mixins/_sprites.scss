@@ -1,0 +1,55 @@
+@function sprite-attr($icon, $attr) {
+  $newIcon: map-get($icons, $icon);
+
+  @if $newIcon == null {
+    @warn "Can't find an icon with the name #{$icon}";
+  }
+  @return map-get($newIcon, $attr);
+}
+
+@function icon-attr($icon) {
+  $attr: (
+    width:  sprite-attr($icon, width),
+    height: sprite-attr($icon, height),
+    x:      sprite-attr($icon, backgroundX),
+    y:      sprite-attr($icon, backgroundY)
+  );
+
+  @return $attr;
+}
+
+@function sprite-dim($icon) {
+  @return icon-attr($icon);
+}
+
+@mixin sprite-container($icon, $value) {
+  $iconMap: sprite-dim($icon);
+
+  width:  map-get($iconMap, width) * $value;
+  height: map-get($iconMap, height) * $value;
+}
+
+@mixin sprite($icon, $type: all) {
+  @if $type == all {
+    @extend %sprite;
+  }
+
+  $iconMap: icon-attr($icon);
+
+  @if $type == all or $type == size {
+    width:  map-get($iconMap, width);
+    height: map-get($iconMap, height);
+  }
+
+  @if $type == all or $type == bg {
+    background-position: map-get($iconMap, x) map-get($iconMap, y);
+  }
+}
+
+$sprite: map-get($icons, sprite) !default;
+
+%sprite {
+  display:          inline-block;
+  background-image: url(map-get($sprite, svgPath));
+  background-size:  map-get($sprite, width) map-get($sprite, height);
+}

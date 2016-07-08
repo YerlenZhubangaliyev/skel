@@ -1,0 +1,4 @@
+public_html/static/
+data/locale/*.dat
+cache/view/
+logs/.gitkeep

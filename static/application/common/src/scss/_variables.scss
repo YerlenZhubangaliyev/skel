@@ -1,0 +1,39 @@
+/**
+Переменные
+**/
+$small-screen-up: 601px !default;
+$medium-screen-up: 993px !default;
+$large-screen-up: 1201px !default;
+$small-screen: 600px !default;
+$medium-screen: 992px !default;
+$large-screen: 1200px !default;
+
+$medium-and-up: "only screen and (min-width : #{$small-screen-up})" !default;
+$large-and-up: "only screen and (min-width : #{$medium-screen-up})" !default;
+$small-and-down: "only screen and (max-width : #{$small-screen})" !default;
+$medium-and-down: "only screen and (max-width : #{$medium-screen})" !default;
+$medium-only: "only screen and (min-width : #{$small-screen-up}) and (max-width : #{$medium-screen})" !default;
+
+// Grid Variables
+$num-cols: 12 !default;
+$gutter-width: 1.5rem !default;
+$element-top-margin: $gutter-width/3 !default;
+$element-bottom-margin: ($gutter-width*2)/3 !default;
+
+
+$primary-color: rgba(245, 61, 66, 1);
+$secondary-color: rgba(21, 149, 136, 1);
+
+/**
+Layout
+**/
+
+$layout-footer-bg-color: #ededed;
+$layout-main-bg-color: #f5f5f5;
+
+$link-secondary-color: #21B0E0;
+
+/**
+Currency
+**/
+$currency-tenge-sign: "\20b8";

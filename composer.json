@@ -1,0 +1,46 @@
+{
+  "name":         "wow-skeleton",
+  "homepage":     "https://wow.kz/projects/",
+  "license":      "proprietary",
+  "autoload":     {
+    "psr-4": {
+      "":                    "_skel/src/",
+      "App\\Applications\\": "src/App/Applications/",
+      "App\\Model\\":        "src/App/Model/"
+    }
+  },
+  "require":      {
+    "php":                         ">=5.6",
+    "ext-phalcon":                 "^2.0",
+    "phalcon/incubator":           "^2.0",
+    "monolog/monolog":             "*",
+    "robmorgan/phinx":             "*",
+    "elasticsearch/elasticsearch": "~2.0"
+  },
+  "require-dev":  {
+    "codeception/codeception":     "*",
+    "phalcon/devtools":            "dev-master",
+    "fzaninotto/faker":            "*",
+    "flow/jsonpath":               "*",
+    "adoy/php-icu-resourcebundle": "*"
+  },
+  "repositories": [
+    {
+      "type":    "package",
+      "package": {
+        "name":     "adoy/php-icu-resourcebundle",
+        "version":  "1.0",
+        "source":   {
+          "url":       "https://github.com/adoy/php-icu-resourcebundle.git",
+          "type":      "git",
+          "reference": "master"
+        },
+        "autoload": {
+          "psr-0": {
+            "Adoy\\ICU\\ResourceBundle": "lib/"
+          }
+        }
+      }
+    }
+  ]
+}
