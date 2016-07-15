@@ -1,5 +1,5 @@
 <?php
-namespace App\Model\Entity\Base;
+namespace App\Model\Entity;
 
 use App\Abstractions\Entity;
 
