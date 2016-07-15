@@ -1,4 +1,4 @@
-# Кодовая база DASM
+# Кодовая база
 
 ## Create an empty repository and add submodule
 
