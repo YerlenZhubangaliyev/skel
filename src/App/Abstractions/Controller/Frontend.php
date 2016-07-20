@@ -1,6 +1,7 @@
 <?php
 namespace App\Abstractions\Controller;
 
+use App\Di;
 use Phalcon\Mvc\Controller as BaseController;
 use Phalcon\Mvc\Dispatcher;
 
