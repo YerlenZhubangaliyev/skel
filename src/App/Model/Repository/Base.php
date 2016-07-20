@@ -1,7 +1,7 @@
 <?php
 namespace App\Model\Repository;
 
-use App\Abstractions\Repository;
+use App\Abstractions\Database\Repository;
 
 /**
  * Base repository

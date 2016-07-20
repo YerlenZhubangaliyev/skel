@@ -1,5 +1,5 @@
 <?php
-namespace App\Abstractions;
+namespace App\Abstractions\Database;
 
 /**
  * Class Repository

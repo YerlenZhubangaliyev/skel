@@ -1,7 +1,7 @@
 <?php
 namespace App\Applications\Api;
 
-use App\Services as BaseServices;
+use App\Abstractions\Services as BaseServices;
 use Phalcon\Config as PhalconConfig;
 use Phalcon\Mvc\Dispatcher as PhalconDispatcher;
 

@@ -1,7 +1,7 @@
 <?php
 namespace App\Applications\Cli;
 
-use App\Services as BaseServices;
+use App\Abstractions\Services as BaseServices;
 use Phalcon\Cli\Router as PhalconRouter;
 use Phalcon\Cli\Dispatcher as PhalconDispatcher;
 

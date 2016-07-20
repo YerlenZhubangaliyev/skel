@@ -1,5 +1,5 @@
 <?php
-namespace App;
+namespace App\Abstractions;
 
 use App\View\Functions;
 use App\Helper\Path as HelperPath;

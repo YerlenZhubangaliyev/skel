@@ -30,3 +30,7 @@ _skel/public_html/
 _skel/static/
 _skel/tmp/
 _skel/vendor/
+.local
+.config
+.ssh
+.cache

@@ -1,5 +1,5 @@
 <?php
-namespace App\Abstractions;
+namespace App\Abstractions\Database;
 
 use App\Di;
 use App\Traits\Cacheable;
