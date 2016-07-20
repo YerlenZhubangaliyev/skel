@@ -21,6 +21,9 @@ mkdir -p bin
 mkdir -p tmp
 mkdir -p logs
 mkdir -p static
+mkdir -p src/App/Applications/Api
+mkdir -p src/App/Applications/Api/Modules
+mkdir -p src/App/Applications/Api/Config
 mkdir -p src/App/Applications/Frontend
 mkdir -p src/App/Applications/Frontend/Modules
 mkdir -p src/App/Applications/Frontend/View
@@ -48,11 +51,13 @@ cp -R _skel/static/application static/
 cp _skel/data/index/cli.php bin/index.php
 cp _skel/data/index/public.php public_html/index.php
 cp _skel/data/index/.htaccess public_html/.htaccess
-cp -R _skel/src/App/Applications/Frontend/Config src/App/Applications/Frontend/Config
-cp -R _skel/src/App/Applications/Frontend/Modules src/App/Applications/Frontend/Modules
-cp -R _skel/src/App/Applications/Frontend/View src/App/Applications/Frontend/View
-cp -R _skel/src/App/Applications/Cli/Config src/App/Applications/Cli/Config
-cp -R _skel/src/App/Applications/Cli/Modules src/App/Applications/Cli/Modules
+cp -R _skel/src/App/Applications/Api/Config src/App/Applications/Api/
+cp -R _skel/src/App/Applications/Api/Modules src/App/Applications/Api/
+cp -R _skel/src/App/Applications/Frontend/Config src/App/Applications/Frontend/
+cp -R _skel/src/App/Applications/Frontend/Modules src/App/Applications/Frontend/
+cp -R _skel/src/App/Applications/Frontend/View src/App/Applications/Frontend/
+cp -R _skel/src/App/Applications/Cli/Config src/App/Applications/Cli/
+cp -R _skel/src/App/Applications/Cli/Modules src/App/Applications/Cli/
 cp -R _skel/src/App/Model src/App/
 cp -R _skel/data/locale data/
 cp -R _skel/bin/variables-*.sh bin/

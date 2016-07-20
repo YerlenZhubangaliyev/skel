@@ -1,7 +1,7 @@
 <?php
 namespace App\Applications\Frontend\Modules\Main\Controller;
 
-use App\Abstractions\Controller\Frontend as Controller;
+use App\Abstractions\Controller\Api as Controller;
 use App\Traits\Translate;
 
 /**
