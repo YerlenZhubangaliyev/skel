@@ -1,13 +1,13 @@
 <?php
-namespace App;
+namespace App\Abstractions\Controller;
 
 use Phalcon\Mvc\Controller as BaseController;
 use Phalcon\Mvc\Dispatcher;
 
 /**
- * Базовый класс контроллера
+ * Base Frontend controller
  */
-class Controller extends BaseController
+abstract class Frontend extends BaseController
 {
 
     /**
