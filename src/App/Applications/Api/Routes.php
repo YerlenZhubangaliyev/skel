@@ -1,10 +1,10 @@
 <?php
-namespace App\Applications\Frontend;
+namespace App\Applications\Api;
 
 use App\Routes as BaseRoutes;
 
 /**
- * Роуты для Frontend
+ * Роуты для API
  */
 class Routes extends BaseRoutes
 {
