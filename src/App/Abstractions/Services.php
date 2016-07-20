@@ -1,6 +1,7 @@
 <?php
 namespace App\Abstractions;
 
+use App\Di;
 use App\View\Functions;
 use App\Helper\Path as HelperPath;
 use Monolog\Logger;
