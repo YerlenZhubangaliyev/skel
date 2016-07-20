@@ -47,6 +47,7 @@ abstract class Services
         'db',
         'registry',
         'translate',
+        'view',
         'session',
         'template',
         'logger',
