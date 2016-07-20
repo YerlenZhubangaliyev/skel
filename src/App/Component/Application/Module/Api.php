@@ -4,11 +4,9 @@ namespace App\Component\Application\Module;
 use App\Helper\Path as HelperPath;
 use Phalcon\Di;
 use Phalcon\Loader;
-use Phalcon\Mvc\View;
 use Phalcon\DiInterface;
 use Phalcon\Mvc\Dispatcher;
 use Phalcon\Mvc\ModuleDefinitionInterface;
-use Phalcon\Mvc\View\Engine\Volt as VoltEngine;
 use Phalcon\Events\Manager as EventsManager;
 
 /**

@@ -21,6 +21,7 @@ class Services extends BaseServices
         'router',
         'db',
         'registry',
+        'view',
         'translate',
         'session',
         'flashSession',
