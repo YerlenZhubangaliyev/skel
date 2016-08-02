@@ -46,7 +46,6 @@ abstract class Api extends BaseController
     {
         $this->response
             ->setJsonContent((array)$dispatcher->getReturnedValue())
-            ->send()
         ;
     }
 
