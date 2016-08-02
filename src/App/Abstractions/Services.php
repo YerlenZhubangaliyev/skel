@@ -1,7 +1,7 @@
 <?php
 namespace App\Abstractions;
 
-use Phalcon\Di;
+use App\Di;
 use App\View\Functions;
 use App\Helper\Path as HelperPath;
 use Monolog\Logger;
@@ -67,24 +67,6 @@ abstract class Services
     }
 
     /**
-     * @return \Phalcon\Config
-     */
-    public function getConfig()
-    {
-        return $this->config;
-    }
-
-    /**
-     *
-     */
-    public function setConfig()
-    {
-        $this->di->set('config', function () {
-            return $this->getConfig();
-        }, true);
-    }
-
-    /**
      * Возвращает объект Di
      *
      * @return \App\Di
@@ -100,7 +82,9 @@ abstract class Services
     protected function initialize()
     {
         foreach ($this->services as $service) {
-            call_user_func([$this, 'set' . ucfirst($service)]);
+            $methodName = 'set' . ucfirst($service);
+
+            $this->{$methodName}();
         }
     }
 
@@ -142,13 +126,12 @@ abstract class Services
      */
     protected function setRegistry()
     {
-        $this->di->set(
-            'registry', function () {
-            $registry = new Registry();
+        $this->di->set('registry', function () {
+            $registry         = new Registry();
+            $registry->config = $this->config;
 
             return $registry;
-        }, true
-        );
+        }, true);
     }
 
     /**
@@ -167,13 +150,13 @@ abstract class Services
             $translate     = new $class(
                 array_merge(
                     $configOptions->toArray(), [
-                    'locale' => $locale,
-                    'bundle' => sprintf(
-                        $configOptions->bundle, ROOT_DIR,
-                        Di::getDefault()->getRegistry()->application,
-                        Di::getDefault()->getRegistry()->module
-                    ),
-                ]
+                                                 'locale' => $locale,
+                                                 'bundle' => sprintf(
+                                                     $configOptions->bundle, ROOT_DIR,
+                                                     Di::getDefault()->getRegistry()->application,
+                                                     Di::getDefault()->getRegistry()->module
+                                                 ),
+                                             ]
                 )
             );
 
