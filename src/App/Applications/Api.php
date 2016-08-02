@@ -49,11 +49,12 @@ class Api extends BaseApplication
 
             if ($moduleConfig) {
                 foreach ($moduleConfig->toArray()['module']['modules'] as $moduleName) {
-                    $classPath           = HelperPath::arrayToNamespace([
-                                                                            HelperPath::arrayToNamespace($moduleConfig->toArray()['module']['settings']['namespace']),
-                                                                            \ucfirst($moduleName),
-                                                                            $moduleConfig->toArray()['module']['settings']['className'],
-                                                                        ]
+                    $classPath           = HelperPath::arrayToNamespace(
+                        [
+                            HelperPath::arrayToNamespace($moduleConfig->toArray()['module']['settings']['namespace']),
+                            \ucfirst($moduleName),
+                            $moduleConfig->toArray()['module']['settings']['className'],
+                        ]
                     );
                     $result[$moduleName] = [
                         "className" => $classPath,

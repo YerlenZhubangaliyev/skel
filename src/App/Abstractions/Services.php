@@ -55,13 +55,10 @@ abstract class Services
 
     /**
      * Конструктор
-     *
-     * @param \Phalcon\Config $config
      */
-    public function __construct(PhalconConfig $config)
+    public function __construct()
     {
-        $this->config = $config;
-        $this->di     = new Di();
+        $this->di = new Di();
 
         $this->initialize();
     }
@@ -86,6 +83,20 @@ abstract class Services
 
             $this->{$methodName}();
         }
+    }
+
+    /**
+     * Config initialization
+     */
+    public function setConfig()
+    {
+        $configClass = sprintf('App\Applications\%s\Config\%s', APPLICATION, ENVIRONMENT);
+
+        $this->di->set(
+            'config', function () use ($configClass) {
+            return (new $configClass());
+        }, true
+        );
     }
 
     /**
@@ -126,12 +137,14 @@ abstract class Services
      */
     protected function setRegistry()
     {
-        $this->di->set('registry', function () {
+        $this->di->set(
+            'registry', function () {
             $registry         = new Registry();
             $registry->config = $this->config;
 
             return $registry;
-        }, true);
+        }, true
+        );
     }
 
     /**

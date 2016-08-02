@@ -51,7 +51,7 @@ class Bootstrap
             exit(1);
         }
 
-        $this->services = new $servicesClass(new $configClass());
+        $this->services = new $servicesClass();
 
         Di::setDefault($this->services->getDi());
     }
