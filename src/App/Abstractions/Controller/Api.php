@@ -45,10 +45,9 @@ abstract class Api extends BaseController
     public function afterExecuteRoute($dispatcher)
     {
         $this->response
-            ->setJsonContent(\json_encode((array)$dispatcher->getReturnedValue()))
+            ->setJsonContent((array)$dispatcher->getReturnedValue())
             ->send()
         ;
-
     }
 
     /**
