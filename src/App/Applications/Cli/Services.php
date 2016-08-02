@@ -15,9 +15,10 @@ final class Services extends BaseServices
      * @var array
      */
     protected $services = [
+        'config',
+        'registry',
         'router',
         'db',
-        'registry',
         'dispatcher',
         'logger',
         'template',

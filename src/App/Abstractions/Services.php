@@ -1,7 +1,7 @@
 <?php
 namespace App\Abstractions;
 
-use Phalcon\Di;
+use App\Di;
 use App\View\Functions;
 use App\Helper\Path as HelperPath;
 use Monolog\Logger;
@@ -43,9 +43,10 @@ abstract class Services
      * @var array
      */
     protected $services = [
+        'config',
+        'registry',
         'router',
         'db',
-        'registry',
         'translate',
         'session',
         'template',
@@ -55,33 +56,12 @@ abstract class Services
 
     /**
      * Конструктор
-     *
-     * @param \Phalcon\Config $config
      */
-    public function __construct(PhalconConfig $config)
+    public function __construct()
     {
-        $this->config = $config;
-        $this->di     = new Di();
+        $this->di = new Di();
 
         $this->initialize();
-    }
-
-    /**
-     * @return \Phalcon\Config
-     */
-    public function getConfig()
-    {
-        return $this->config;
-    }
-
-    /**
-     *
-     */
-    public function setConfig()
-    {
-        $this->di->set('config', function () {
-            return $this->getConfig();
-        }, true);
     }
 
     /**
@@ -100,8 +80,24 @@ abstract class Services
     protected function initialize()
     {
         foreach ($this->services as $service) {
-            call_user_func([$this, 'set' . ucfirst($service)]);
+            $methodName = 'set' . ucfirst($service);
+
+            $this->{$methodName}();
         }
+    }
+
+    /**
+     * Config initialization
+     */
+    public function setConfig()
+    {
+        $configClass = sprintf('App\Applications\%s\Config\%s', APPLICATION, ENVIRONMENT);
+
+        $this->di->set(
+            'config', function () use ($configClass) {
+            return (new $configClass());
+        }, true
+        );
     }
 
     /**
@@ -144,7 +140,8 @@ abstract class Services
     {
         $this->di->set(
             'registry', function () {
-            $registry = new Registry();
+            $registry         = new Registry();
+            $registry->config = $this->config;
 
             return $registry;
         }, true
@@ -167,13 +164,13 @@ abstract class Services
             $translate     = new $class(
                 array_merge(
                     $configOptions->toArray(), [
-                    'locale' => $locale,
-                    'bundle' => sprintf(
-                        $configOptions->bundle, ROOT_DIR,
-                        Di::getDefault()->getRegistry()->application,
-                        Di::getDefault()->getRegistry()->module
-                    ),
-                ]
+                                                 'locale' => $locale,
+                                                 'bundle' => sprintf(
+                                                     $configOptions->bundle, ROOT_DIR,
+                                                     Di::getDefault()->getRegistry()->application,
+                                                     Di::getDefault()->getRegistry()->module
+                                                 ),
+                                             ]
                 )
             );
 
