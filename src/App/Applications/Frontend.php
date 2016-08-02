@@ -33,8 +33,6 @@ class Frontend extends BaseApplication
         }
 
         $this->bootstrap = new Bootstrap($loader);
-
-        Error\Handler::register();
     }
 
     /**
