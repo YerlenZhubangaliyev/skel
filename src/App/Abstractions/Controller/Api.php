@@ -73,13 +73,5 @@ abstract class Api extends BaseController
         }
 
         $this->response->resetHeaders()->setStatusCode($code, null);
-
-        $this->view->setVars(
-            [
-                'error'        => $error,
-                'code'         => $code,
-                'displayError' => (ENVIRONMENT != \App::ENV_PRODUCTION || ENVIRONMENT != \App::ENV_STAGING),
-            ]
-        );
     }
 }

@@ -6,7 +6,6 @@ use App\View\Functions;
 use App\Helper\Path as HelperPath;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
-use Phalcon\Mvc\View;
 use Phalcon\Mvc\View\Simple as ViewSimple;
 use Phalcon\Config as PhalconConfig;
 use Phalcon\Cache\Frontend\Data as CacheFrontendData;
@@ -22,13 +21,6 @@ use Phalcon\Mvc\View\Engine\Volt as VoltEngine;
  */
 abstract class Services
 {
-
-    /**
-     * Объект с конфигурацией приложения
-     *
-     * @var \Phalcon\Config
-     */
-    protected $config;
 
     /**
      * Объект, реализующий внедрение зависимостей
@@ -154,7 +146,7 @@ abstract class Services
     {
         $this->di->set(
             'translate', function () {
-            $configOptions = $this->di->getRegistry()->config->locale;
+            $configOptions = $this->di->getConfig()->locale;
             $locale        =
                 $this->di->getRegistry()->offsetExists('locale') ?
                     $this->di->getRegistry()->locale
@@ -162,14 +154,15 @@ abstract class Services
             $class         = $configOptions->class;
             $translate     = new $class(
                 array_merge(
-                    $configOptions->toArray(), [
-                                                 'locale' => $locale,
-                                                 'bundle' => sprintf(
-                                                     $configOptions->bundle, ROOT_DIR,
-                                                     Di::getDefault()->getRegistry()->application,
-                                                     Di::getDefault()->getRegistry()->module
-                                                 ),
-                                             ]
+                    $configOptions->toArray(),
+                    [
+                        'locale' => $locale,
+                        'bundle' => sprintf(
+                            $configOptions->bundle, ROOT_DIR,
+                            Di::getDefault()->getRegistry()->application,
+                            Di::getDefault()->getRegistry()->module
+                        ),
+                    ]
                 )
             );
 
