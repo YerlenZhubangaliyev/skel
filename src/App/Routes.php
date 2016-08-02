@@ -53,7 +53,7 @@ class Routes
     }
 
     /**
-     * Получаем экземпляр класса
+     * Get router instance
      *
      * @return \Phalcon\Mvc\Router
      */
@@ -63,11 +63,11 @@ class Routes
     }
 
     /**
-     *
+     * Apply routes
      */
     public function applyRoutes()
     {
-        $baseDomain = $this->getDi()->getConfig()->application->domain;
+        $baseDomain = Di::getDefault()->getConfig()->application->domain;
 
         $this->router->setDefaultModule(self::$defaultModule);
         $this->router->setDefaultController(self::$defaultController);

@@ -43,9 +43,10 @@ abstract class Services
      * @var array
      */
     protected $services = [
+        'config',
+        'registry',
         'router',
         'db',
-        'registry',
         'translate',
         'session',
         'template',
