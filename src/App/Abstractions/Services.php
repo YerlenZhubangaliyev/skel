@@ -67,6 +67,24 @@ abstract class Services
     }
 
     /**
+     * @return \Phalcon\Config
+     */
+    public function getConfig()
+    {
+        return $this->config;
+    }
+
+    /**
+     *
+     */
+    public function setConfig()
+    {
+        $this->di->set('config', function () {
+            return $this->getConfig();
+        }, true);
+    }
+
+    /**
      * Возвращает объект Di
      *
      * @return \App\Di
