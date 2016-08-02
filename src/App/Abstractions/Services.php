@@ -1,7 +1,7 @@
 <?php
 namespace App\Abstractions;
 
-use App\Di;
+use Phalcon\Di;
 use App\View\Functions;
 use App\Helper\Path as HelperPath;
 use Monolog\Logger;
@@ -91,11 +91,13 @@ abstract class Services
      */
     protected function setEventsManager()
     {
-        $this->di->set('eventsManager', function () {
+        $this->di->set(
+            'eventsManager', function () {
             $manager = new PhalconEventsManager();
 
             return $manager;
-        }, true);
+        }, true
+        );
     }
 
     /**
@@ -103,7 +105,8 @@ abstract class Services
      */
     protected function setDb()
     {
-        $this->di->set('db', function () {
+        $this->di->set(
+            'db', function () {
             $className = sprintf('\Phalcon\Db\Adapter\Pdo\%s', $this->config->database->adapter);
 
             unset($this->config->database->adapter);
@@ -112,7 +115,8 @@ abstract class Services
             $connection = new $className($this->config->database->toArray());
 
             return $connection;
-        }, true);
+        }, true
+        );
     }
 
     /**
@@ -120,12 +124,13 @@ abstract class Services
      */
     protected function setRegistry()
     {
-        $this->di->set('registry', function () {
-            $registry         = new Registry();
-            $registry->config = $this->config;
+        $this->di->set(
+            'registry', function () {
+            $registry = new Registry();
 
             return $registry;
-        }, true);
+        }, true
+        );
     }
 
     /**
@@ -133,22 +138,30 @@ abstract class Services
      */
     protected function setTranslate()
     {
-        $this->di->set('translate', function () {
+        $this->di->set(
+            'translate', function () {
             $configOptions = $this->di->getRegistry()->config->locale;
             $locale        =
                 $this->di->getRegistry()->offsetExists('locale') ?
                     $this->di->getRegistry()->locale
                     : $configOptions['locale'];
             $class         = $configOptions->class;
-            $translate     = new $class(array_merge($configOptions->toArray(), [
-                'locale' => $locale,
-                'bundle' => sprintf($configOptions->bundle, ROOT_DIR,
-                    Di::getDefault()->getRegistry()->application,
-                    Di::getDefault()->getRegistry()->module),
-            ]));
+            $translate     = new $class(
+                array_merge(
+                    $configOptions->toArray(), [
+                    'locale' => $locale,
+                    'bundle' => sprintf(
+                        $configOptions->bundle, ROOT_DIR,
+                        Di::getDefault()->getRegistry()->application,
+                        Di::getDefault()->getRegistry()->module
+                    ),
+                ]
+                )
+            );
 
             return $translate;
-        }, true);
+        }, true
+        );
     }
 
     /**
@@ -156,7 +169,8 @@ abstract class Services
      */
     protected function setTemplate()
     {
-        $this->di->set('template', function () {
+        $this->di->set(
+            'template', function () {
             $viewDirectory         = sprintf("%s/src/App/View/Views/", ROOT_DIR);
             $view                  = new ViewSimple();
             $viewCompiledDirectory = HelperPath::arrayToPath(
@@ -170,23 +184,28 @@ abstract class Services
             );
 
             $view->setViewsDir($viewDirectory);
-            $view->registerEngines([
-                '.volt' => function ($view, $dependencyInjector) use ($viewCompiledDirectory) {
-                    $volt = new VoltEngine($view, $dependencyInjector);
-                    $volt->setOptions([
-                        'compiledPath'  => $viewCompiledDirectory,
-                        'stat'          => true,
-                        'compileAlways' => true,
-                    ]);
+            $view->registerEngines(
+                [
+                    '.volt' => function ($view, $dependencyInjector) use ($viewCompiledDirectory) {
+                        $volt = new VoltEngine($view, $dependencyInjector);
+                        $volt->setOptions(
+                            [
+                                'compiledPath'  => $viewCompiledDirectory,
+                                'stat'          => true,
+                                'compileAlways' => true,
+                            ]
+                        );
 
-                    new Functions($volt);
+                        new Functions($volt);
 
-                    return $volt;
-                },
-            ]);
+                        return $volt;
+                    },
+                ]
+            );
 
             return $view;
-        }, true);
+        }, true
+        );
     }
 
     /**
@@ -194,12 +213,14 @@ abstract class Services
      */
     protected function setSession()
     {
-        $this->di->set('session', function () {
+        $this->di->set(
+            'session', function () {
             $session = new Session();
             $session->start();
 
             return $session;
-        }, true);
+        }, true
+        );
     }
 
     /**
@@ -207,16 +228,20 @@ abstract class Services
      */
     public function setFlashSession()
     {
-        $this->di->set('flashSession', function () {
-            $flashSession = new FlashSession([
-                'error'   => 'alert alert-danger',
-                'notice'  => 'alert alert-info',
-                'success' => 'alert alert-success',
-                'warning' => 'alert alert-warning',
-            ]);
+        $this->di->set(
+            'flashSession', function () {
+            $flashSession = new FlashSession(
+                [
+                    'error'   => 'alert alert-danger',
+                    'notice'  => 'alert alert-info',
+                    'success' => 'alert alert-success',
+                    'warning' => 'alert alert-warning',
+                ]
+            );
 
             return $flashSession;
-        }, true);
+        }, true
+        );
     }
 
     /**
@@ -224,12 +249,15 @@ abstract class Services
      */
     public function setLogger()
     {
-        $this->di->set('logger', function () {
-            $logger = new Logger(sprintf(
-                '%s:%s',
-                APPLICATION,
-                ENVIRONMENT
-            ));
+        $this->di->set(
+            'logger', function () {
+            $logger = new Logger(
+                sprintf(
+                    '%s:%s',
+                    APPLICATION,
+                    ENVIRONMENT
+                )
+            );
 
             $logger->pushHandler(
                 new StreamHandler(
@@ -243,7 +271,8 @@ abstract class Services
             );
 
             return $logger;
-        }, true);
+        }, true
+        );
     }
 
     /**
@@ -251,7 +280,8 @@ abstract class Services
      */
     public function setModelsCache()
     {
-        $this->di->set('modelsCache', function () {
+        $this->di->set(
+            'modelsCache', function () {
             $frontCacheData = new CacheFrontendData(
                 [
                     "lifetime" => 86400,
@@ -264,7 +294,8 @@ abstract class Services
             );
 
             return $cache;
-        });
+        }
+        );
     }
 
     /**
