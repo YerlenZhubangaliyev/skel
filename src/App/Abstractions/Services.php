@@ -146,10 +146,10 @@ abstract class Services
     {
         $this->di->set(
             'translate', function () {
-            $configOptions = $this->di->getConfig()->locale;
+            $configOptions = Di::getDefault()->getConfig()->locale;
             $locale        =
-                $this->di->getRegistry()->offsetExists('locale') ?
-                    $this->di->getRegistry()->locale
+                Di::getDefault()->getRegistry()->offsetExists('locale') ?
+                    Di::getDefault()->getRegistry()->locale
                     : $configOptions['locale'];
             $class         = $configOptions->class;
             $translate     = new $class(
