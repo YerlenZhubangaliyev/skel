@@ -10,11 +10,4 @@ use Phalcon\DiInterface;
 class Di extends FactoryDefault implements DiInterface
 {
 
-    /**
-     * @return Object|\ArrayAccess
-     */
-    public function getConfig()
-    {
-        return $this->getShared('registry')->config;
-    }
 }
