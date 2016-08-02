@@ -20,29 +20,35 @@ class Routes
     protected static $modules;
 
     /**
-     * Экземпляр класса
+     * Router instance
      *
      * @var \Phalcon\Mvc\Router
      */
     protected $router;
 
     /**
+     * Default module name
+     *
      * @var string
      */
     protected static $defaultModule = 'main';
 
     /**
+     * Default controller name
+     *
      * @var string
      */
     protected static $defaultController = 'index';
 
     /**
+     * Default action name
+     *
      * @var string
      */
     protected static $defaultAction = 'index';
 
     /**
-     * Конструктор
+     * Constructor
      */
     public function __construct()
     {
