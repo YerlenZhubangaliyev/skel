@@ -62,6 +62,7 @@ class Api extends BaseApplication
                 }
             }
 
+            $application->useImplicitView(false);
             $application->registerModules($result);
 
             return $application->handle()->getContent();

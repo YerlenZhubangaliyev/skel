@@ -140,8 +140,7 @@ abstract class Services
     {
         $this->di->set(
             'registry', function () {
-            $registry         = new Registry();
-            $registry->config = $this->config;
+            $registry = new Registry();
 
             return $registry;
         }, true

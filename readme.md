@@ -1,9 +1,12 @@
-# Кодовая база
+# Phalcon skeleton
 
 ## Create an empty repository and add submodule
 
 ```bash
 git submodule add git@github.com:YerlenZhubangaliyev/skel.git _skel
+git submodule init
+git submodule update
+git submodule foreach git pull origin master
 ```
 
 ## Run init script
