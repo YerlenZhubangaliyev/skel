@@ -17,7 +17,7 @@ abstract class Repository
     /**
      * Возвращает новый объект сущности
      *
-     * @return \App\Abstractions\Entity
+     * @return \App\Abstractions\Database\Entity
      * @throws \Exception
      */
     protected function getEntity()

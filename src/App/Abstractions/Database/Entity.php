@@ -7,7 +7,7 @@ use Phalcon\Mvc\Model;
 use Phalcon\Text;
 
 /**
- * Абстракция сущности
+ * Entity abstraction
  */
 abstract class Entity extends Model
 {
@@ -15,7 +15,7 @@ abstract class Entity extends Model
     use Cacheable;
 
     /**
-     * Идентификатор
+     * Common identifier property
      *
      * @var integer
      */
@@ -237,7 +237,7 @@ abstract class Entity extends Model
     /**
      * @param  integer $id
      *
-     * @return \App\Abstractions\Entity
+     * @return \App\Abstractions\Database\Entity
      */
     public function setId($id)
     {
