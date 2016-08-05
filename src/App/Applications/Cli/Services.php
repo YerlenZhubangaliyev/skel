@@ -19,7 +19,6 @@ final class Services extends BaseServices
         'registry',
         'router',
         'db',
-        'dispatcher',
         'logger',
         'template',
     ];
