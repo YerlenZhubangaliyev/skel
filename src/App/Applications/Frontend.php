@@ -65,7 +65,12 @@ class Frontend extends BaseApplication
 
             return $application->handle()->getContent();
         } catch (\Exception $e) {
-            echo $e->getMessage();
+            echo sprintf(
+                "%s, %s, %s",
+                $e->getMessage(),
+                $e->getFile(),
+                $e->getLine()
+            );
 
             exit;
         }

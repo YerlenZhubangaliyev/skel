@@ -65,7 +65,12 @@ class Cli extends BaseApplication
 
             $application->handle(Options::getOptions());
         } catch (\Exception $e) {
-            echo $e->getMessage();
+            echo sprintf(
+                "%s, %s, %s",
+                $e->getMessage(),
+                $e->getFile(),
+                $e->getLine()
+            );
             
             exit;
         }
