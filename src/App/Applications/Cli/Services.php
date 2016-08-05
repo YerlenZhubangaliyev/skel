@@ -41,18 +41,4 @@ final class Services extends BaseServices
             return new PhalconRouter();
         }, true);
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function setDispatcher()
-    {
-        $this->di->set('dispatcher', function () {
-            $dispatcher = new PhalconDispatcher();
-            $dispatcher->setDefaultNamespace(sprintf('App\Applications\%s\Task', APPLICATION));
-            $dispatcher->setEventsManager($this->di->getEventsManager());
-
-            return $dispatcher;
-        }, true);
-    }
 }
