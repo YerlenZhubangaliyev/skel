@@ -111,14 +111,14 @@ abstract class Services
      */
     protected function setDb()
     {
-        $this->di->set(
-            'db', function () {
-            $className = sprintf('\Phalcon\Db\Adapter\Pdo\%s', $this->config->database->adapter);
+        $this->di->set('db', function () {
+            $config    = Di::getDefault()->getConfig()->database;
+            $className = sprintf('\Phalcon\Db\Adapter\Pdo\%s', $config->adapter);
 
-            unset($this->config->database->adapter);
+            unset($config->adapter);
 
             /** @var \Phalcon\Db\Adapter $connection */
-            $connection = new $className($this->config->database->toArray());
+            $connection = new $className($config->toArray());
 
             return $connection;
         }, true
