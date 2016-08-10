@@ -58,6 +58,7 @@ class Services extends BaseServices
                     $elastic = Elasticsearch\ClientBuilder
                         ::create()
                         ->setHosts($this->di->getConfig()->elastic->hosts)
+                        ->setLogger($this->di->getLogger())
                         ->build()
                     ;
 
