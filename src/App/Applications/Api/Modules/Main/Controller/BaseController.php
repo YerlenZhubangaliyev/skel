@@ -5,7 +5,7 @@ use App\Abstractions\Controller\Api as Controller;
 use App\Traits\Translate;
 
 /**
- * Базовый контролле
+ * Base controller
  */
 class BaseController extends Controller
 {

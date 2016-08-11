@@ -34,7 +34,7 @@
     "fs-extra":               "*",
     "stringify":              "*",
     "node-sass":              "3.7",
-    "jquery":                 "~2.1",
+    "jquery":                 "^3",
     "lodash":                 "*"
   },
   "browserify":      {

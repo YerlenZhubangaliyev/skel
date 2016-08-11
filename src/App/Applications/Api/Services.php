@@ -31,7 +31,7 @@ class Services extends BaseServices
     ];
 
     /**
-     * Инициализация роутера
+     * Router
      */
     protected function setRouter()
     {
