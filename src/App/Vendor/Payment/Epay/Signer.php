@@ -2,7 +2,9 @@
 namespace App\Vendor\Payment\Epay;
 
 /**
+ * Kkb signer
  *
+ * @link https://epay.kkb.kz
  */
 class Signer
 {
@@ -29,7 +31,7 @@ class Signer
      * @param $keyPath
      * @param $password
      *
-     * @return $this
+     * @return \App\Vendor\Payment\Epay\Signer
      */
     public function setPrivateKey($keyPath, $password)
     {

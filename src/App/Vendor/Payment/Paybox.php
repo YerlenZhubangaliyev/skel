@@ -2,7 +2,9 @@
 namespace App\Vendor\Payment;
 
 /**
- * Оплата через paybox.kz
+ * Paybox.kz
+ *
+ * @link http://paybox.kz
  */
 class Paybox
 {
