@@ -1,10 +1,7 @@
 <?php
 namespace App\Applications\Api\Config;
 
-use App\Application;
-use App\Vendor\Phalcon\Translate\Adapter\ResourceBundle;
 use Phalcon\Config;
-use Phalcon\Di;
 
 /**
  * {@inheritdoc}
