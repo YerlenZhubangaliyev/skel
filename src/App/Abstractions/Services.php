@@ -317,7 +317,7 @@ abstract class Services
                 if (isset(Di::getDefault()->getConfig()->elastic->hosts)) {
                     $elastic = Elasticsearch\ClientBuilder
                         ::create()
-                        ->setHosts(Di::getDefault()->getConfig()->elastic->hosts)
+                        ->setHosts(Di::getDefault()->getConfig()->elastic->hosts->toArray())
                         ->setLogger(Di::getDefault()->getLogger())
                         ->build()
                     ;
