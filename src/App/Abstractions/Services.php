@@ -4,6 +4,7 @@ namespace App\Abstractions;
 use App\Di;
 use App\View\Functions;
 use App\Helper\Path as HelperPath;
+use Elasticsearch;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 use Phalcon\Mvc\View\Simple as ViewSimple;
@@ -302,6 +303,29 @@ abstract class Services
 
             return $cache;
         }
+        );
+    }
+
+    /**
+     * ElasticSearch
+     */
+    protected function setElastic()
+    {
+        $this->di->set(
+            'elastic',
+            function () {
+                if (isset($this->di->getConfig()->elastic->hosts)) {
+                    $elastic = Elasticsearch\ClientBuilder
+                        ::create()
+                        ->setHosts($this->di->getConfig()->elastic->hosts)
+                        ->setLogger($this->di->getLogger())
+                        ->build()
+                    ;
+
+                    return $elastic;
+                }
+            },
+            true
         );
     }
 
