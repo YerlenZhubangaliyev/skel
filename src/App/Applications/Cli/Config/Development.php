@@ -24,8 +24,8 @@ class Development extends Staging
                         'version' => 1,
                     ],
                     'beanstalk'   => [
-                        'host'   => '192.168.9.240',
-                        'prefix' => '',
+                        'host' => '192.168.9.240',
+                        'port' => 11300,
                     ],
                 ]
             )

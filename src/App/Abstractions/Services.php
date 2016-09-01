@@ -16,7 +16,7 @@ use Phalcon\Flash\Session as FlashSession;
 use Phalcon\Session\Adapter\Files as Session;
 use Phalcon\Registry;
 use Phalcon\Mvc\View\Engine\Volt as VoltEngine;
-use Phalcon\Queue\Beanstalk\Extended as Beanstalk;
+use Phalcon\Queue\Beanstalk;
 
 /**
  * Базовые сервисы

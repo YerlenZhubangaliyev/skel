@@ -20,8 +20,8 @@ class Local extends Development
             new Config(
                 [
                     'beanstalk' => [
-                        'host'   => '127.0.0.1',
-                        'prefix' => '',
+                        'host' => '127.0.0.1',
+                        'port' => 11300,
                     ],
                 ]
             )
