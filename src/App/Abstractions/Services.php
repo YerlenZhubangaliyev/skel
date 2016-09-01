@@ -16,6 +16,7 @@ use Phalcon\Flash\Session as FlashSession;
 use Phalcon\Session\Adapter\Files as Session;
 use Phalcon\Registry;
 use Phalcon\Mvc\View\Engine\Volt as VoltEngine;
+use Phalcon\Queue\Beanstalk;
 
 /**
  * Базовые сервисы
@@ -45,6 +46,7 @@ abstract class Services
         'template',
         'logger',
         'modelsCache',
+        'beanstalk',
     ];
 
     /**
@@ -323,6 +325,24 @@ abstract class Services
                     ;
 
                     return $elastic;
+                }
+            },
+            true
+        );
+    }
+
+    /**
+     * Beanstalk (Queueing)
+     */
+    protected function setBeanstalk()
+    {
+        $this->di->set(
+            'beanstalk',
+            function () {
+                if (isset(Di::getDefault()->getConfig()->beanstalk)) {
+                    $queue = new Beanstalk(Di::getDefault()->getConfig()->beanstalk->toArray());
+
+                    return $queue;
                 }
             },
             true

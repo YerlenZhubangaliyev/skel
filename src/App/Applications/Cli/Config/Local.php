@@ -16,8 +16,12 @@ class Local extends Development
     {
         parent::__construct();
 
-        $this->merge(new Config([
-            
-        ]));
+        $this->merge(
+            new Config(
+                [
+
+                ]
+            )
+        );
     }
 }

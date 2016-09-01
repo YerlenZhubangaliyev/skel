@@ -16,11 +16,19 @@ class Development extends Staging
     {
         parent::__construct();
 
-        $this->merge(new Config([
-            'application' => [
-                'name'    => 'skel cli',
-                'version' => 1,
-            ],
-        ]));
+        $this->merge(
+            new Config(
+                [
+                    'application' => [
+                        'name'    => 'skel cli',
+                        'version' => 1,
+                    ],
+                    'beanstalk'   => [
+                        'host' => '192.168.9.240',
+                        'port' => 11300,
+                    ],
+                ]
+            )
+        );
     }
 }

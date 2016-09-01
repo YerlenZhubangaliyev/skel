@@ -27,6 +27,7 @@ class Services extends BaseServices
         'logger',
         'template',
         'elastic',
+        'beanstalk',
     ];
 
     /**

@@ -37,6 +37,10 @@ class Development extends Staging
                         'bundle'   => '%s/data/locale/%s/%s/src/txt/',
                         'fallback' => true,
                     ],
+                    'beanstalk'   => [
+                        'host' => '192.168.9.240',
+                        'port' => 11300,
+                    ],
                 ]
             )
         );
