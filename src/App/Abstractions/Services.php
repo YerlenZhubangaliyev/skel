@@ -16,7 +16,7 @@ use Phalcon\Flash\Session as FlashSession;
 use Phalcon\Session\Adapter\Files as Session;
 use Phalcon\Registry;
 use Phalcon\Mvc\View\Engine\Volt as VoltEngine;
-use Phalcon\Queue\Beanstalk;
+use Phalcon\Queue\Beanstalk\Extended as Beanstalk;
 
 /**
  * Базовые сервисы
@@ -89,9 +89,11 @@ abstract class Services
         $configClass = sprintf('App\Applications\%s\Config\%s', APPLICATION, ENVIRONMENT);
 
         $this->di->set(
-            'config', function () use ($configClass) {
-            return (new $configClass());
-        }, true
+            'config',
+            function () use ($configClass) {
+                return (new $configClass());
+            },
+            true
         );
     }
 
@@ -101,11 +103,13 @@ abstract class Services
     protected function setEventsManager()
     {
         $this->di->set(
-            'eventsManager', function () {
-            $manager = new PhalconEventsManager();
+            'eventsManager',
+            function () {
+                $manager = new PhalconEventsManager();
 
-            return $manager;
-        }, true
+                return $manager;
+            },
+            true
         );
     }
 
@@ -114,17 +118,20 @@ abstract class Services
      */
     protected function setDb()
     {
-        $this->di->set('db', function () {
-            $config    = Di::getDefault()->getConfig()->database;
-            $className = sprintf('\Phalcon\Db\Adapter\Pdo\%s', $config->adapter);
+        $this->di->set(
+            'db',
+            function () {
+                $config    = Di::getDefault()->getConfig()->database;
+                $className = sprintf('\Phalcon\Db\Adapter\Pdo\%s', $config->adapter);
 
-            unset($config->adapter);
+                unset($config->adapter);
 
-            /** @var \Phalcon\Db\Adapter $connection */
-            $connection = new $className($config->toArray());
+                /** @var \Phalcon\Db\Adapter $connection */
+                $connection = new $className($config->toArray());
 
-            return $connection;
-        }, true
+                return $connection;
+            },
+            true
         );
     }
 
@@ -134,11 +141,13 @@ abstract class Services
     protected function setRegistry()
     {
         $this->di->set(
-            'registry', function () {
-            $registry = new Registry();
+            'registry',
+            function () {
+                $registry = new Registry();
 
-            return $registry;
-        }, true
+                return $registry;
+            },
+            true
         );
     }
 
@@ -148,29 +157,31 @@ abstract class Services
     protected function setTranslate()
     {
         $this->di->set(
-            'translate', function () {
-            $configOptions = Di::getDefault()->getConfig()->locale;
-            $locale        =
-                Di::getDefault()->getRegistry()->offsetExists('locale') ?
-                    Di::getDefault()->getRegistry()->locale
-                    : $configOptions['locale'];
-            $class         = $configOptions->class;
-            $translate     = new $class(
-                array_merge(
-                    $configOptions->toArray(),
-                    [
-                        'locale' => $locale,
-                        'bundle' => sprintf(
-                            $configOptions->bundle, ROOT_DIR,
-                            Di::getDefault()->getRegistry()->application,
-                            Di::getDefault()->getRegistry()->module
-                        ),
-                    ]
-                )
-            );
+            'translate',
+            function () {
+                $configOptions = Di::getDefault()->getConfig()->locale;
+                $locale        =
+                    Di::getDefault()->getRegistry()->offsetExists('locale') ?
+                        Di::getDefault()->getRegistry()->locale
+                        : $configOptions['locale'];
+                $class         = $configOptions->class;
+                $translate     = new $class(
+                    array_merge(
+                        $configOptions->toArray(),
+                        [
+                            'locale' => $locale,
+                            'bundle' => sprintf(
+                                $configOptions->bundle, ROOT_DIR,
+                                Di::getDefault()->getRegistry()->application,
+                                Di::getDefault()->getRegistry()->module
+                            ),
+                        ]
+                    )
+                );
 
-            return $translate;
-        }, true
+                return $translate;
+            },
+            true
         );
     }
 
@@ -180,41 +191,43 @@ abstract class Services
     protected function setTemplate()
     {
         $this->di->set(
-            'template', function () {
-            $viewDirectory         = sprintf("%s/src/App/View/Views/", ROOT_DIR);
-            $view                  = new ViewSimple();
-            $viewCompiledDirectory = HelperPath::arrayToPath(
-                [
-                    ROOT_DIR,
-                    "cache",
-                    "view",
-                ],
-                true,
-                false
-            );
+            'template',
+            function () {
+                $viewDirectory         = sprintf("%s/src/App/View/Views/", ROOT_DIR);
+                $view                  = new ViewSimple();
+                $viewCompiledDirectory = HelperPath::arrayToPath(
+                    [
+                        ROOT_DIR,
+                        "cache",
+                        "view",
+                    ],
+                    true,
+                    false
+                );
 
-            $view->setViewsDir($viewDirectory);
-            $view->registerEngines(
-                [
-                    '.volt' => function ($view, $dependencyInjector) use ($viewCompiledDirectory) {
-                        $volt = new VoltEngine($view, $dependencyInjector);
-                        $volt->setOptions(
-                            [
-                                'compiledPath'  => $viewCompiledDirectory,
-                                'stat'          => true,
-                                'compileAlways' => true,
-                            ]
-                        );
+                $view->setViewsDir($viewDirectory);
+                $view->registerEngines(
+                    [
+                        '.volt' => function ($view, $dependencyInjector) use ($viewCompiledDirectory) {
+                            $volt = new VoltEngine($view, $dependencyInjector);
+                            $volt->setOptions(
+                                [
+                                    'compiledPath'  => $viewCompiledDirectory,
+                                    'stat'          => true,
+                                    'compileAlways' => true,
+                                ]
+                            );
 
-                        new Functions($volt);
+                            new Functions($volt);
 
-                        return $volt;
-                    },
-                ]
-            );
+                            return $volt;
+                        },
+                    ]
+                );
 
-            return $view;
-        }, true
+                return $view;
+            },
+            true
         );
     }
 
@@ -224,12 +237,14 @@ abstract class Services
     protected function setSession()
     {
         $this->di->set(
-            'session', function () {
-            $session = new Session();
-            $session->start();
+            'session',
+            function () {
+                $session = new Session();
+                $session->start();
 
-            return $session;
-        }, true
+                return $session;
+            },
+            true
         );
     }
 
@@ -239,18 +254,20 @@ abstract class Services
     public function setFlashSession()
     {
         $this->di->set(
-            'flashSession', function () {
-            $flashSession = new FlashSession(
-                [
-                    'error'   => 'alert alert-danger',
-                    'notice'  => 'alert alert-info',
-                    'success' => 'alert alert-success',
-                    'warning' => 'alert alert-warning',
-                ]
-            );
+            'flashSession',
+            function () {
+                $flashSession = new FlashSession(
+                    [
+                        'error'   => 'alert alert-danger',
+                        'notice'  => 'alert alert-info',
+                        'success' => 'alert alert-success',
+                        'warning' => 'alert alert-warning',
+                    ]
+                );
 
-            return $flashSession;
-        }, true
+                return $flashSession;
+            },
+            true
         );
     }
 
@@ -260,28 +277,30 @@ abstract class Services
     public function setLogger()
     {
         $this->di->set(
-            'logger', function () {
-            $logger = new Logger(
-                sprintf(
-                    '%s:%s',
-                    APPLICATION,
-                    ENVIRONMENT
-                )
-            );
-
-            $logger->pushHandler(
-                new StreamHandler(
+            'logger',
+            function () {
+                $logger = new Logger(
                     sprintf(
-                        "%s/logs/%s.log",
-                        ROOT_DIR,
-                        (new \DateTime('now'))->format('Y-m-d')
-                    ),
-                    Logger::DEBUG
-                )
-            );
+                        '%s:%s',
+                        APPLICATION,
+                        ENVIRONMENT
+                    )
+                );
 
-            return $logger;
-        }, true
+                $logger->pushHandler(
+                    new StreamHandler(
+                        sprintf(
+                            "%s/logs/%s.log",
+                            ROOT_DIR,
+                            (new \DateTime('now'))->format('Y-m-d')
+                        ),
+                        Logger::DEBUG
+                    )
+                );
+
+                return $logger;
+            },
+            true
         );
     }
 
@@ -291,20 +310,22 @@ abstract class Services
     public function setModelsCache()
     {
         $this->di->set(
-            'modelsCache', function () {
-            $frontCacheData = new CacheFrontendData(
-                [
-                    "lifetime" => 86400,
-                ]
-            );
+            'modelsCache',
+            function () {
+                $frontCacheData = new CacheFrontendData(
+                    [
+                        "lifetime" => 86400,
+                    ]
+                );
 
-            $cache = new CacheBackendRedis(
-                $frontCacheData,
-                $this->di->getConfig()->cache->redis->toArray()
-            );
+                $cache = new CacheBackendRedis(
+                    $frontCacheData,
+                    $this->di->getConfig()->cache->redis->toArray()
+                );
 
-            return $cache;
-        }
+                return $cache;
+            },
+            true
         );
     }
 
@@ -340,7 +361,14 @@ abstract class Services
             'beanstalk',
             function () {
                 if (isset(Di::getDefault()->getConfig()->beanstalk)) {
-                    $queue = new Beanstalk(Di::getDefault()->getConfig()->beanstalk->toArray());
+                    $queue = new Beanstalk(
+                        array_merge(
+                            Di::getDefault()->getConfig()->beanstalk->toArray(),
+                            [
+                                'logger' => Di::getDefault()->getLogger(),
+                            ]
+                        )
+                    );
 
                     return $queue;
                 }

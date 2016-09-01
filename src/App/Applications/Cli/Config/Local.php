@@ -19,7 +19,10 @@ class Local extends Development
         $this->merge(
             new Config(
                 [
-
+                    'beanstalk' => [
+                        'host'   => '127.0.0.1',
+                        'prefix' => '',
+                    ],
                 ]
             )
         );
