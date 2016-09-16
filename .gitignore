@@ -13,3 +13,5 @@ tmp/
 !tmp/.gitkeep
 run/
 !run/.gitkeep
+cache/view/*
+!cache/view/.gitkeep
