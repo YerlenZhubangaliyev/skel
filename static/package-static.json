@@ -1,0 +1,29 @@
+{
+  "name":            "_skel-static",
+  "main":            "gulpfile.js",
+  "license":         "UNLICENSED",
+  "description":     "Static files",
+  "dependencies":    {
+    "browserify":      "^13",
+    "browserify-shim": "^3.8",
+    "jquery":          "^3",
+    "lodash":          "*"
+  },
+  "browserify":      {
+    "transform": [
+      "browserify-shim"
+    ]
+  },
+  "browser":         {
+    "jquery": "./node_modules/jquery/dist/jquery.js",
+    "lodash": "./node_modules/lodash/lodash.js"
+  },
+  "browserify-shim": {
+    "jquery": {
+      "exports": "$"
+    },
+    "lodash": {
+      "exports": "_"
+    }
+  }
+}

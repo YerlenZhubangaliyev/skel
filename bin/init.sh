@@ -46,7 +46,7 @@ touch logs/.gitkeep
 # Copy necessary files
 cp _skel/.gitignore .
 cp _skel/composer.json .
-cp _skel/static/package.json static/
+cp _skel/static/package-static.json static/package.json
 cp -R _skel/static/application static/
 cp _skel/data/index/cli.php bin/index.php
 cp _skel/data/index/public.php public_html/index.php
