@@ -3,7 +3,7 @@
 var modules = require('../tasks-modules');
 
 /**
- * Компиляция JS скриптов
+ * Javascript compiling
  */
 modules.gulp.task('scripts', function () {
     modules.scriptsBuild(modules.config.paths.src.jsFiles, false)

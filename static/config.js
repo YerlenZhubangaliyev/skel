@@ -35,7 +35,7 @@ var
                                    moduleName.slice(1) +
                                    '/partials/favicons.volt',
                 favicon:           appCommonSrcDir + 'src/images/favicon.png',
-                fontDir:           './node_modules/materialize-css/font',
+                fonts:             appCommonSrcDir + 'src/fonts',
                 spriteTemplate:    appSrcDir + 'src/scss/_spriteTemplate.tpl'
             },
             dest: {
@@ -48,7 +48,7 @@ var
                 cssFiles:         appDestDir + '/css/**/*.css',
                 favicons:         appDestDir + '/img/favicons/',
                 faviconsUrlPath:  '/static/' + appName + '/' + moduleName + '/img/favicons/',
-                fontDir:          appDestDir + '/font',
+                fonts:            appDestDir + '/fonts',
                 spriteScssFile:   './_sprite.scss',
                 spriteSvgFile:    '../../../../../../public_html/static/' + appName + '/' + moduleName + '/img/sprite.svg'
             },

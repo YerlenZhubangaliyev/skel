@@ -3,7 +3,7 @@
 var modules = require('../tasks-modules');
 
 /**
- * Компиляция SASS файлов
+ * Scss vendor styles compilations
  */
 modules.gulp.task('vendor-styles', function () {
     return modules.gulp.src([modules.config.paths.src.vendorScssFiles])

@@ -1,0 +1,4 @@
+# Optional tasks
+
+- fonts
+- favicons

@@ -3,7 +3,7 @@
 var modules = require('../tasks-modules');
 
 /**
- * Очистка сбилденных файлов
+ * Clean task
  */
 modules.gulp.task('clean', function (cb) {
     modules.del([

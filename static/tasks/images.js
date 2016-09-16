@@ -5,7 +5,7 @@ var
     fs      = require('fs-extra');
 
 /**
- * Копирование изображений (не спрайт)
+ * Copying images (no sprite)
  */
 modules.gulp.task('images', ['svg-optimize'], function () {
     fs.copy(modules.config.paths.src.noSpriteImg, modules.config.paths.dest.noSpriteImg, function (err) {

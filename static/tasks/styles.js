@@ -3,7 +3,7 @@
 var modules = require('../tasks-modules');
 
 /**
- * Компиляция SASS файлов
+ * Scss compilation
  */
 modules.gulp.task('styles', function () {
     return modules.gulp.src([

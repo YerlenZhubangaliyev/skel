@@ -3,7 +3,7 @@
 var modules = require('../tasks-modules');
 
 /**
- * Генерирует favicons
+ * Favicons generation
  */
 modules.gulp.task('favicons', ['cleanFaviconTemplate'], function () {
     return modules.gulp.src(modules.config.paths.src.favicon).pipe(modules.favicons({

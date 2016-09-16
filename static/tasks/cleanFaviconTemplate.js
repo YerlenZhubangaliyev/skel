@@ -3,7 +3,7 @@
 var modules = require('../tasks-modules');
 
 /**
- * Очистка шаблона volt
+ * Clean volt templates
  */
 modules.gulp.task('cleanFaviconTemplate', function (cb) {
     modules.del([

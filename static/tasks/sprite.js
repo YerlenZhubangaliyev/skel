@@ -3,7 +3,7 @@
 var modules = require('../tasks-modules');
 
 /**
- * Генерация SVG спрайта
+ * SVG sprite generation
  */
 modules.gulp.task('sprite', function () {
     var spriteConfig = {
