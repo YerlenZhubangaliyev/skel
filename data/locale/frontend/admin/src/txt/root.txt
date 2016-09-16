@@ -4,4 +4,8 @@ root {
         version { "0.0.1" }
         copyright { "&copy; {currentYear, date, y}. APP NAME" }
     }
+
+    errors {
+        javascriptDisabled { "Javascript disabled" }
+    }
 }
