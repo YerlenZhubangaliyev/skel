@@ -9,3 +9,7 @@ favicons.volt
 data/locale/*.dat
 data/locale/*/*/res/*.res
 data/locale/*/*/res/package.txt
+tmp/
+!tmp/.gitkeep
+run/
+!run/.gitkeep
