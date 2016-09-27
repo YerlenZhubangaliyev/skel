@@ -1,0 +1,9 @@
+server {
+    listen       80;
+    server_name  %HOST_NAME%;
+    include      %NGINX_CONF_PATH%%POOL_NAME%-nginx-phalcon-rewrite;
+    root         /Users/%OWNER_USER%/%PATH_TO_WEB_ROOT%;
+    index        index.php;
+    include      %NGINX_CONF_PATH%%POOL_NAME%-nginx-cors;
+    include      %NGINX_CONF_PATH%%POOL_NAME%-nginx-php;
+}
