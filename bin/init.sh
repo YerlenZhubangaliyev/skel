@@ -70,7 +70,8 @@ composer install
 # Initialize static build system
 cd _skel/static
 npm install
-cp -R node_modules ../../static/
+cd ../../static/
+npm install
 gulp --app="frontend" --mod="main" --env="${ENV}"
 gulp --app="frontend" --mod="admin" --env="${ENV}"
 cd ${DIR_ROOT}
