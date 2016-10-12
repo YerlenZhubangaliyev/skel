@@ -12,4 +12,3 @@
 SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1
 SetEnv APPLICATION Frontend
 SetEnv ENVIRONMENT Development
-SetEnv DEVELOPER Yerlen
