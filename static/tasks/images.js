@@ -7,7 +7,7 @@ var
 /**
  * Copying images (no sprite)
  */
-modules.gulp.task('images', ['svg-optimize'], function () {
+modules.gulp.task('images', function () {
     fs.copy(modules.config.paths.src.noSpriteImg, modules.config.paths.dest.noSpriteImg, function (err) {
         if (err) {
             console.error(err);
