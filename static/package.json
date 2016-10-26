@@ -33,7 +33,7 @@
     "envify":                 "*",
     "fs-extra":               "*",
     "stringify":              "*",
-    "node-sass":              "3.7",
+    "node-sass":              "^3",
     "jquery":                 "^3",
     "lodash":                 "*"
   },
