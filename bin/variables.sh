@@ -18,8 +18,8 @@ BIN_NPM=/usr/bin/npm
 BIN_GULP=/usr/bin/gulp
 BIN_NPM_CACHE=/usr/bin/npm-cache
 BIN_RSYNC=/usr/bin/rsync
-BIN_GENRB=/usr/bin/genrb
-BIN_PKGDATA=/usr/bin/pkgdata
+BIN_GENRB=genrb
+BIN_PKGDATA=pkgdata
 
 DIR_ROOT="$( cd "$( dirname $BASH_SOURCE[0] )" && cd ../.. && pwd )"
 DIR_CURR=`pwd`
